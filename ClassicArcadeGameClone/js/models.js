@@ -14,7 +14,7 @@ const MAX_ENEMY_COUNT = 5;//最大敌人数量
  * @param {string} name 
  * @param {Array} sprites 
  */
- var Scene = function(name, sprites) {
+ const Scene = function(name, sprites) {
     this.name = name;//场景名称
     this.sprites = sprites;//场景包含的精灵
 }
@@ -22,7 +22,7 @@ const MAX_ENEMY_COUNT = 5;//最大敌人数量
 /**
  * 背景类  负责绘制背景
  */
-var BackSprite = function () {
+const BackSprite = function () {
     this.rowImages = [
         'images/water-block.png',   // 这一行是河。
         'images/stone-block.png',   // 第一行石头
@@ -39,7 +39,7 @@ BackSprite.prototype.update = function() {
 
 BackSprite.prototype.render = function () {
    /* 这个数组保存着游戏关卡的特有的行对应的图片相对路径。 */
-   var row, col;
+   let row, col;
 
    /* 便利我们上面定义的行和列，用 rowImages 数组，在各自的各个位置绘制正确的图片 */
    for (row = 0; row < ROW_NUMS; row++) {
@@ -56,7 +56,7 @@ BackSprite.prototype.render = function () {
 /**
  * 敌人类  负责敌人的运动 更新  绘制
  */
-var Enemy = function(sprite = 'images/enemy-bug.png', x, y, factor, speed, isActive = true) {
+let Enemy = function(sprite = 'images/enemy-bug.png', x, y, factor, speed, isActive = true) {
     // 要应用到每个敌人的实例的变量写在这里
     // 我们已经提供了一个来帮助你实现更多
 
@@ -78,7 +78,7 @@ var Enemy = function(sprite = 'images/enemy-bug.png', x, y, factor, speed, isAct
 };
 
 Enemy.prototype.reset = function () {
-    this.speed = Math.round(Math.random()*4);//速度也改一下
+    this.speed = Math.round(Math.random()*4) + 1;//速度也改一下
     //重新赋值 y和x吧
     let row = Math.round(Math.random()*2) + 1; 
     this.startDelay = Math.round(Math.random()*8) + 1;
@@ -114,7 +114,7 @@ Enemy.prototype.render = function() {
 /**
  * 玩家类  负责监听按键实现玩家运动  以及玩家和敌人的碰撞检测
  */
-var Player = function() {
+const Player = function() {
     this.sprite = 'images/char-cat-girl.png';
     this.x = ROW_WIDTH * 2;
     this.y = COL_HEIGHT * 5;
@@ -160,7 +160,7 @@ Player.prototype.handleInput = function(key) {
  * @param {string} font 
  * @param {string} textAlign 
  */
-var TextSprite = function (text="", x=0, y=0, textColor="white", strokeWidth=0, strokeStyle, font="14pt Calibri", textAlign="center") {
+const TextSprite = function (text="", x=0, y=0, textColor="white", strokeWidth=0, strokeStyle, font="14pt Calibri", textAlign="center") {
     this.text = text;
     this.x = x;
     this.y = y;
@@ -195,7 +195,7 @@ TextSprite.prototype.reset = function (text) {
     this.text = text;
 }
 
-var RoleChooser = function(heightOffset = 260, roles) {
+const RoleChooser = function(heightOffset = 260, roles) {
     this.currentSelectPosition = 0;
     this.heightOffset = heightOffset;//默认的角色选择器在平魔中的绘制高度
     if (roles) {
@@ -247,7 +247,7 @@ RoleChooser.prototype.handleInput = function(key) {
     }
 }
 
-var TriangleIndicator = function () {
+const TriangleIndicator = function () {
     this.size = 20;//三角形的边的长度
     this.heightOffset = 455;
     this.maxSize = 25;
@@ -288,7 +288,7 @@ TriangleIndicator.prototype.render = function () {
     ctx.restore();
 }
 
-var Collection = function (factor = 10, image = 'images/Gem Blue') {
+const Collection = function (factor = 10, image = 'images/Gem Blue') {
     this.factor = factor;
     this.image = image;
 }

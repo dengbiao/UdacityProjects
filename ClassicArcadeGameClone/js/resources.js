@@ -4,9 +4,9 @@
  */
 
 (function() {
-    var resourceCache = {};
-    var loading = [];
-    var readyCallbacks = [];
+    let resourceCache = {};
+    let loading = [];
+    let readyCallbacks = [];
 
     /* 这是公开访问的图片加载函数, 它接受一个指向图片文件的字符串的数组或者是单个图片的
      * 路径字符串。然后再调用我们私有的图片加载函数。
@@ -35,7 +35,7 @@
         } else {
             /* 否则， 这个 URL 之前没被加载过而且在缓存里面不存在，那么我们得加载这张图片
              */
-            var img = new Image();
+            let img = new Image();
             img.onload = function() {
                 /* 一旦我们的图片已经被加载了，就把它放进我们的缓存，然后我们在开发者试图
                  * 在未来再次加载这个图片的时候我们就可以简单的返回即可。
@@ -66,8 +66,8 @@
     /* 这个函数是否检查所有被请求加载的图片都已经被加载了。
      */
     function isReady() {
-        var ready = true;
-        for(var k in resourceCache) {
+        let ready = true;
+        for(let k in resourceCache) {
             if(resourceCache.hasOwnProperty(k) &&
                !resourceCache[k]) {
                 ready = false;

@@ -51,8 +51,8 @@ const Engine = (function(global) {
              }
          });
 
-         global.refreshData(dt);
-         global.collisonDetect();
+         global.refreshData(dt);//刷新数据
+         global.collisonDetect();//碰撞检测
 
         // update(dt);
         // render();

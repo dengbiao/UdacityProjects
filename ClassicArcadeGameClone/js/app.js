@@ -47,7 +47,8 @@ const gameScene = new Scene("game", gameSprites);
 allScenes.set("game", gameScene);
 
 
-//胜利场景 包含背景 结束提示信息
+//胜利场景 包含背景 结束提示信息 
+//还包含了游戏场景的对象集合gameSprites作为背景图 让运动的对象都停下来  这样就能停留在游戏的最后一帧  其实也可以考虑整体截图 就不需要每次都绘制那么多对象了
 const victoryTitleTipsSprite = new TextSprite("Victory", WINDOW_WIDTH/2, 170, "white", 0, "white", 'bold 40pt "Press Start 2P", cursive');
 const finalScoreTipsSprite = new TextSprite("Score:200", WINDOW_WIDTH/2, 300, "black", 0, "blue", 'bold 18pt "Press Start 2P", cursive');
 const restartTipsSprite = new TextSprite("Press enter or space to reStart game.", WINDOW_WIDTH/2, 500, "black", 0, "white", "normal 12pt Calibri");
@@ -111,6 +112,9 @@ function changeScene(name) {
 
 }
 
+/**
+ * 初始化数据  切换到游戏场景的时候调用
+ */
 function initData() {
     player.sprite = roleChooser.roles[roleChooser.currentSelectPosition];//使用当前选中角色
     allEnemies.forEach(function(enemy) {

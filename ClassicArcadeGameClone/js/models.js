@@ -59,6 +59,7 @@ BackSprite.prototype.render = function () {
  * @param {number} factor 加分因子  正数表示加分 负数 表示减分
  * @param {number} speed 移动速度
  * @param {boolean} isActive 是不是运动对象  敌人类是可动的   收藏类是不动的
+ * @param {number} scale 对象图片绘制的缩放比例
  */
 let Enemy = function(sprite = 'images/enemy-bug.png', x, y, factor, speed, isActive = true, scale = 1) {
 

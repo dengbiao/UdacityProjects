@@ -52,11 +52,12 @@ const victoryTitleTipsSprite = new TextSprite("Victory", WINDOW_WIDTH/2, 170, "w
 const finalScoreTipsSprite = new TextSprite("Score:200", WINDOW_WIDTH/2, 300, "black", 0, "blue", 'bold 18pt "Press Start 2P", cursive');
 const restartTipsSprite = new TextSprite("Press enter or space to reStart game.", WINDOW_WIDTH/2, 500, "black", 0, "white", "normal 12pt Calibri");
 
-const victoryScene = new Scene("victory", [victoryTitleTipsSprite, finalScoreTipsSprite, restartTipsSprite]);
+const victoryScene = new Scene("victory", [...gameSprites, victoryTitleTipsSprite, finalScoreTipsSprite, restartTipsSprite]);
 allScenes.set("victory", victoryScene);
 
 //当前场景  刚开始为初始化场景
-let currentScene = allScenes.get("init");
+let currentScene;
+changeScene("init");
 
 
 //玩家类监听按键 处理按键事件在player对象的handleInput中
@@ -95,11 +96,33 @@ function handleInput(key) {
     }
 }
 
+function changeScene(name) {
+    switch(name) {
+        case "init":
+        break;
+        case "game":
+            initData();
+        break;
+        case "victory":
+        break;
+    }
+
+    currentScene = allScenes.get(name);
+
+}
+
+function initData() {
+    player.sprite = roleChooser.roles[roleChooser.currentSelectPosition];//使用当前选中角色
+    allEnemies.forEach(function(enemy) {
+        enemy.isActive = true;
+    });
+}
+
 /**
  * 重置游戏数据
  */
 function reset() {
-    currentScene = allScenes.get("init");//切换到游戏场景
+    changeScene("init");//切换到欢迎场景
     player.reset();
     allEnemies.forEach(function(enemy) {
         enemy.reset();
@@ -122,7 +145,15 @@ function refreshData(dt) {
             produceCollection();
             if (player.y === 0) {
                 //获胜
+                //赋值最终成绩
                 finalScoreTipsSprite.text = `Score: ${Math.ceil(score)}`;
+                //停下所有运动对象
+                [...allEnemies, ...allCollection].forEach(element =>
+                    {
+                        element.isActive = false;
+                    }
+                );
+                //切换到胜利场景
                 currentScene = allScenes.get('victory');
             }
         break;
@@ -142,7 +173,7 @@ function produceCollection() {
         //随机个x,y坐标
         let x = Math.round(Math.random()*5) * ROW_WIDTH;
         let y = (Math.round(Math.random()*2) + 1) * COL_HEIGHT;
-        let collectionSprite = new Enemy(collection.image, x, y, collection.factor, 0, false);
+        let collectionSprite = new Enemy(collection.image, x, y, collection.factor, 0, false, 0.5);//所有收藏的图片都缩小一半来绘制 显得精致一点
         //添加到收藏列表
         allCollection.push(collectionSprite);
     }

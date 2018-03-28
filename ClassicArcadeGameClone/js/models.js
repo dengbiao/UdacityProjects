@@ -60,7 +60,7 @@ BackSprite.prototype.render = function () {
  * @param {number} speed 移动速度
  * @param {boolean} isActive 是不是运动对象  敌人类是可动的   收藏类是不动的
  */
-let Enemy = function(sprite = 'images/enemy-bug.png', x, y, factor, speed, isActive = true) {
+let Enemy = function(sprite = 'images/enemy-bug.png', x, y, factor, speed, isActive = true, scale = 1) {
 
     this.sprite = sprite;
     this.speed = Math.round(Math.random() * MAX_SPPED) + 1;//随机一个速度
@@ -75,12 +75,13 @@ let Enemy = function(sprite = 'images/enemy-bug.png', x, y, factor, speed, isAct
 
     this.factor = factor ? factor : -10;//撞击到该敌人 扣多少分
     this.isActive = isActive;
+    this.scale = scale;
 };
 
 Enemy.prototype.reset = function () {
-    this.speed = Math.round(Math.random()*4) + 1;//速度也改一下
+    this.speed = Math.round(Math.random() * MAX_SPPED) + 1;//速度也改一下
     //重新赋值 y和x吧
-    let row = Math.round(Math.random()*2) + 1; 
+    let row = Math.round(Math.random() * 2) + 1; 
     this.startDelay = Math.round(Math.random()*MAX_START_DELAY) + 1;
     this.x = -ROW_WIDTH * this.startDelay;
     this.y = COL_HEIGHT * row;
@@ -103,11 +104,12 @@ Enemy.prototype.update = function(dt) {
 
 // 此为游戏必须的函数，用来在屏幕上画出敌人，
 Enemy.prototype.render = function() {
-    if (this.isActive) {
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    let imageToDraw = Resources.get(this.sprite);
+    if (this.scale == 1) {
+        ctx.drawImage(imageToDraw, this.x, this.y);
     } else {
-        let imageToDraw = Resources.get(this.sprite);
-        ctx.drawImage(imageToDraw, this.x + imageToDraw.width/4, this.y + imageToDraw.height/4, imageToDraw.width/2, imageToDraw.height/2);
+        ctx.drawImage(imageToDraw, this.x + imageToDraw.width * this.scale / 2, this.y + imageToDraw.height * this.scale / 2
+            , imageToDraw.width * this.scale, imageToDraw.height * this.scale);
     }
 };
 
@@ -247,8 +249,7 @@ RoleChooser.prototype.handleInput = function(key) {
     } else if (key == "left") {//将右边的待选项切换成当前待选项
         this.currentSelectPosition = (this.currentSelectPosition + 1) % this.roles.length;
     } else if (key == "enter" || key == "space") {
-        player.sprite = this.roles[this.currentSelectPosition];//使用当前选中角色
-        currentScene = allScenes.get("game");//切换到游戏场景
+        changeScene("game");
     }
 }
 

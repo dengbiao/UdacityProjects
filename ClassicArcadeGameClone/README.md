@@ -28,11 +28,11 @@
 然后在浏览器中打开 `http://127.0.0.1:8080/`即可开始玩游戏。
 
 ## 3、游戏截图
-<img src="http://p4joo743u.bkt.clouddn.com/README-2018328111347.png" width="50%" height="50%">
+<img src="https://github.com/dengbiao/UdacityProjects/blob/master/ClassicArcadeGameClone/screenshots/welcome.png" width="50%" height="50%">
 
-<img src="http://p4joo743u.bkt.clouddn.com/README-2018328111355.png" width="50%" height="50%">
+<img src="https://github.com/dengbiao/UdacityProjects/blob/master/ClassicArcadeGameClone/screenshots/game.png" width="50%" height="50%">
 
-<img src="http://p4joo743u.bkt.clouddn.com/README-2018328111359.png" width="50%" height="50%">
+<img src="https://github.com/dengbiao/UdacityProjects/blob/master/ClassicArcadeGameClone/screenshots/victory.png" width="50%" height="50%">
 
 ## 4、Q&A
 第一个JS完成的游戏项目，可玩性一般，纯练手，有问题可以私聊交流。

@@ -1,13 +1,7 @@
 
 前端纳米学位街机游戏克隆项目
 ===============================
-
-学生应该用这个[评审标准](https://review.udacity.com/#!/rubrics/499/view))来自我检查自己提交的代码。 确认自己写的函数要是**面向对象的** -  要么是类函数（就像函数 Player 和 Enemy）要么是类的原型链上的函数比如 Enemy.prototype.checkCollisions ， 在类函数里面或者类的原型链函数里面适当的使用关键词 'this' 来引用调用该函数的对象实例。最后保证你的**readme.md**文件要写明关于如何运行和如何玩你的街机游戏的指引。
-
-关于如何开始这个项目的更详细的指导，可以查阅这份[指南](https://gdgdocs.org/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true)。
-
-
-===============================
+![README-2018328111413](http://p4joo743u.bkt.clouddn.com/README-2018328111413.gif)
 
 ## 1、运行环境配置
 需要搭建一个本地的web服务器，然后设置项目路径为一个对应的web项目目录。
@@ -26,11 +20,18 @@
 ## 2、下载代码
 >git clone https://github.com/dengbiao/UdacityProjects.git
 
-在命令行中进入到UdacityProjects目录，比如`/Users/free/Documents/HtmlProject/ClassicArcadeGameClone`
+在命令行中进入到UdacityProjects目录，比如`cd /Users/free/Documents/HtmlProject/ClassicArcadeGameClone`
 
 然后在这个目录下执行 `http-server . -p 8080`
 
 然后在浏览器中打开 `http://127.0.0.1:8080/`即可开始玩游戏。
 
-## 3、Enjoy
-第一个js游戏，可玩性很低，多多见谅。
+## 3、游戏截图
+![README-2018328111347](http://p4joo743u.bkt.clouddn.com/README-2018328111347.png)
+
+![README-2018328111355](http://p4joo743u.bkt.clouddn.com/README-2018328111355.png)
+
+![README-2018328111359](http://p4joo743u.bkt.clouddn.com/README-2018328111359.png)
+
+## 4、Q&A
+第一个JS完成的游戏项目，可玩性一般，纯练手，有问题可以私聊交流。

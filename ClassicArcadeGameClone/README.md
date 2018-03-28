@@ -1,7 +1,7 @@
 
 前端纳米学位街机游戏克隆项目
 ===============================
-<img src="http://p4joo743u.bkt.clouddn.com/README-2018328111413.gif" width="50%" height="50%">
+<img src="https://github.com/dengbiao/UdacityProjects/blob/master/ClassicArcadeGameClone/record.gif" width="50%" height="50%">
 
 
 ## 1、运行环境配置

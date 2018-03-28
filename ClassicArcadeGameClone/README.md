@@ -3,6 +3,8 @@
 ===============================
 <img src="https://github.com/dengbiao/UdacityProjects/blob/master/ClassicArcadeGameClone/record.gif" width="50%" height="50%">
 
+在线试玩地址：https://freedeng.cn/ClassicArcadeGameClone/index.html
+
 
 ## 1、运行环境配置
 需要搭建一个本地的web服务器，然后设置项目路径为一个对应的web项目目录。

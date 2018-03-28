@@ -1,7 +1,8 @@
 
 前端纳米学位街机游戏克隆项目
 ===============================
-![README-2018328111413](http://p4joo743u.bkt.clouddn.com/README-2018328111413.gif)
+<img src="http://p4joo743u.bkt.clouddn.com/README-2018328111413.gif" width="50%" height="50%">
+
 
 ## 1、运行环境配置
 需要搭建一个本地的web服务器，然后设置项目路径为一个对应的web项目目录。
@@ -27,11 +28,11 @@
 然后在浏览器中打开 `http://127.0.0.1:8080/`即可开始玩游戏。
 
 ## 3、游戏截图
-![README-2018328111347](http://p4joo743u.bkt.clouddn.com/README-2018328111347.png)
+<img src="http://p4joo743u.bkt.clouddn.com/README-2018328111347.png" width="50%" height="50%">
 
-![README-2018328111355](http://p4joo743u.bkt.clouddn.com/README-2018328111355.png)
+<img src="http://p4joo743u.bkt.clouddn.com/README-2018328111355.png" width="50%" height="50%">
 
-![README-2018328111359](http://p4joo743u.bkt.clouddn.com/README-2018328111359.png)
+<img src="http://p4joo743u.bkt.clouddn.com/README-2018328111359.png" width="50%" height="50%">
 
 ## 4、Q&A
 第一个JS完成的游戏项目，可玩性一般，纯练手，有问题可以私聊交流。

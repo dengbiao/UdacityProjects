@@ -35,6 +35,16 @@ function init() {
  * 这个回调函数会在所有事情都成功完成之后被调用。
 */
  function loadFeed(id, cb) {
+     if (allFeeds === undefined) {
+        throw new Error('allFeeds is undefined');
+     }
+     if (id === undefined) {
+        throw new Error('id is undefined');
+     }
+     if (id >= allFeeds.length || id < 0) {
+         throw new RangeError('ArrayIndexOutOfBound Exception');
+     }
+     
      var feedUrl = allFeeds[id].url,
          feedName = allFeeds[id].name;
 

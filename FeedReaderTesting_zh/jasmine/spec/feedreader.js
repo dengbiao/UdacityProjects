@@ -146,13 +146,13 @@ $(function() {
         it('should throw undifined error', function() {
             expect(function() {
                 loadFeed();
-            }).toThrowError("Cannot read property 'url' of undefined");
+            }).toThrowError("id is undefined");
         });
 
         it('should throw arrayIndexOutOfBound exception', function() {
             expect(function() {
                 loadFeed(-1);
-            }).toThrowError("Cannot read property 'url' of undefined");//js不会像java一样抛出数据越界，都是获取不到对象，然后尝试返回对象的时候就抛出undifined
+            }).toThrowError("ArrayIndexOutOfBound Exception");
         })
     });
 }());

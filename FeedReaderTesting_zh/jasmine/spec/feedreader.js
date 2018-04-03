@@ -7,14 +7,9 @@
  * 我们得保证在 DOM 准备好之前他们不会被运行。
  */
 $(function() {
-    /* 这是我们第一个测试用例 - 其中包含了一定数量的测试。这个用例的测试
-     * 都是关于 Rss 源的定义的，也就是应用中的 allFeeds 变量。
-    */
+    
     describe('RSS Feeds', function() {
-        /* 这是我们的第一个测试 - 它用来保证 allFeeds 变量被定义了而且
-         * 不是空的。在你开始做这个项目剩下的工作之前最好实验一下这个测试
-         * 比如你把 app.js 里面的 allFeeds 变量变成一个空的数组然后刷新
-         * 页面看看会发生什么。
+        /* 判断allFeeds是否定义，而且有内容。
         */
         it('should be defined', function() {
             expect(allFeeds).toBeDefined();
@@ -22,8 +17,8 @@ $(function() {
         });
 
 
-        /* TODO:
-         * 编写一个测试遍历 allFeeds 对象里面的所有的源来保证有链接字段而且链接不是空的。
+        /** 
+         * 遍历 allFeeds 对象里面的所有的源来保证有链接字段而且链接不是空的。
          */
         it('should have url field and not null', function() {
             allFeeds.forEach(feed => {
@@ -33,8 +28,8 @@ $(function() {
         });
 
 
-        /* TODO:
-         * 编写一个测试遍历 allFeeds 对象里面的所有的源来保证有名字字段而且不是空的。
+        /** 
+         * 遍历 allFeeds 对象里面的所有的源来保证有名字字段而且不是空的。
          */
         it('should have name field and not null', function() {
             allFeeds.forEach(feed => {
@@ -44,66 +39,68 @@ $(function() {
         });
     });
 
-
-    /* TODO: 写一个叫做 "The menu" 的测试用例 */
-
+    /**
+     * 测试左侧侧滑菜单相关
+     */
     describe('The menu', function () {
+        let body, menuIcon;
 
-        /* TODO:
-         * 写一个测试用例保证菜单元素默认是隐藏的。你需要分析 html 和 css
-         * 来搞清楚我们是怎么实现隐藏/展示菜单元素的。
+        beforeEach (function () {//把变量存起来 省的每次都去定位
+            body = $('body');
+            menuIcon = $('.menu-icon-link');
+        });
+
+        /** 
+         * 检查菜单元素默认是不是隐藏的。
          */
         it('should be hidden by default', function () {
-            let hasHideClass = $('body').hasClass("menu-hidden");
+            let hasHideClass = body.hasClass("menu-hidden");
             expect(hasHideClass).toBe(true);
         });
 
 
-         /* TODO:
-          * 写一个测试用例保证当菜单图标被点击的时候菜单会切换可见状态。这个
-          * 测试应该包含两个 expectation ： 党点击图标的时候菜单是否显示，
-          * 再次点击的时候是否隐藏。
+         /**
+          * 保证当菜单图标被点击的时候菜单会切换可见状态。
+          * 包括：点击图标的时候菜单是否显示，再次点击的时候是否隐藏。
           */
         it('should be correct while switch status by click', function () {
-
-            let menuIcon = $('.menu-icon-link');
+            menuIcon.click();
+            let hasHideClass = body.hasClass("menu-hidden");
+            expect(hasHideClass).toBeFalsy();
 
             menuIcon.click();
-            let hasHideClass = $('body').hasClass("menu-hidden");
-            expect(hasHideClass).toBe(false);
+            hasHideClass = body.hasClass("menu-hidden");
+            expect(hasHideClass).toBeTruthy();
 
-            menuIcon.click();
-            hasHideClass = $('body').hasClass("menu-hidden");
-            expect(hasHideClass).toBe(true);
+        });
 
+        afterEach(function () {
+            body = null;
+            menuIcon = null;
         });
 
     });
 
 
 
-    /* TODO: 13. 写一个叫做 "Initial Entries" 的测试用例 */
+    /* 检测数据相关 */
     describe('Initial Entries', function () {
-        /* TODO:
-         * 写一个测试保证 loadFeed 函数被调用而且工作正常，即在 .feed 容器元素
-         * 里面至少有一个 .entry 的元素。
-         * 
-         *
-         * 记住 loadFeed() 函数是异步的所以这个而是应该使用 Jasmine 的 beforeEach
-         * 和异步的 done() 函数。
-         */
-
         let loadFeedFun = jasmine.createSpy().and.callFake(loadFeed);
 
          beforeEach(function (done) {
-
+            //异步调用loadFeed
             loadFeedFun(0, function() {
                 done();
             });
          });
 
+
+        /**
+         * 保证 loadFeed 函数被调用而且工作正常，即在 .feed 容器元素
+         * 里面至少有一个 .entry 的元素。
+         */
         it('method loadFeed() should been called and work correct', function (done) {
-            expect(loadFeedFun).toHaveBeenCalled();
+            expect(loadFeedFun).toHaveBeenCalled();//直接用loadFeed会报错，说需要spy，但是找到function
 
             let entryCount = $('.feed').children().length;
             expect(entryCount).toBeGreaterThan(0);
@@ -115,27 +112,25 @@ $(function() {
     });
         
 
-    /* TODO: 写一个叫做 "New Feed Selection" 的测试用例 */
-
-    xdescribe('New Feed Selection', function () {
-        let firstContent, secondContent;
+    /* 检查请求刷新feeds */
+    describe('New Feed Selection', function () {
+        let firstContent, secondContent;//分别保存第一次请求和第二次请求的内容 然后最对比
         let loadFeedFun = jasmine.createSpy().and.callFake(loadFeed);
-        jasmine.DEFAULT_TIMEOUT_INTERVAL = 200000;
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 200000;//不然会超时，放到beforeEach里面还是会偶现超时 放到外面就不会了，奇怪
 
         beforeEach(function(done) {
             loadFeed(0, function() {
-                firstContent = $('.feed').html();
+                firstContent = $('.feed').html();//第一次请求到的feeds内容
                 loadFeed(1, function() {
-                    secondContent = $('.feed').html();
+                    secondContent = $('.feed').html();//第二次请求到的feeds内容
                     done();
                 });
             });
         });
 
 
-        /* TODO:
-         * 写一个测试保证当用 loadFeed 函数加载一个新源的时候内容会真的改变。
-         * 记住，loadFeed() 函数是异步的。
+        /* 
+         * 检查loadFeed 函数加载一个新源的时候内容会真的改变。
          */
         it('content should be changed after the function loadFeed be called', function (done) {
             expect(firstContent).not.toEqual(secondContent);
@@ -157,7 +152,7 @@ $(function() {
         it('should throw arrayIndexOutOfBound exception', function() {
             expect(function() {
                 loadFeed(-1);
-            }).toThrowError("Cannot read property 'url' of undefined");
+            }).toThrowError("Cannot read property 'url' of undefined");//js不会像java一样抛出数据越界，都是获取不到对象，然后尝试返回对象的时候就抛出undifined
         })
     });
 }());

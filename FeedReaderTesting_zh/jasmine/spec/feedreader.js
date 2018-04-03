@@ -24,6 +24,7 @@ $(function() {
             allFeeds.forEach(feed => {
                 expect(feed.url).toBeDefined();
                 expect(feed.url).not.toBeNull();
+                expect(feed.url.length).toBeGreaterThan(0);
             });
         });
 
@@ -35,6 +36,7 @@ $(function() {
             allFeeds.forEach(feed => {
                 expect(feed.name).toBeDefined();
                 expect(feed.name).not.toBeNull();
+                expect(feed.name.length).toBeGreaterThan(0);
             });
         });
     });
@@ -66,11 +68,11 @@ $(function() {
         it('should be correct while switch status by click', function () {
             menuIcon.click();
             let hasHideClass = body.hasClass("menu-hidden");
-            expect(hasHideClass).toBeFalsy();
+            expect(hasHideClass).toBe(false);
 
             menuIcon.click();
             hasHideClass = body.hasClass("menu-hidden");
-            expect(hasHideClass).toBeTruthy();
+            expect(hasHideClass).toBe(true);
 
         });
 
@@ -89,9 +91,7 @@ $(function() {
 
          beforeEach(function (done) {
             //异步调用loadFeed
-            loadFeedFun(0, function() {
-                done();
-            });
+            loadFeedFun(0, done);
          });
 
 
@@ -99,13 +99,11 @@ $(function() {
          * 保证 loadFeed 函数被调用而且工作正常，即在 .feed 容器元素
          * 里面至少有一个 .entry 的元素。
          */
-        it('method loadFeed() should been called and work correct', function (done) {
+        it('method loadFeed() should been called and work correct', function () {
             expect(loadFeedFun).toHaveBeenCalled();//直接用loadFeed会报错，说需要spy，但是找到function
 
             let entryCount = $('.feed').children().length;
             expect(entryCount).toBeGreaterThan(0);
-
-            done();
 
         });
 
@@ -132,9 +130,8 @@ $(function() {
         /* 
          * 检查loadFeed 函数加载一个新源的时候内容会真的改变。
          */
-        it('content should be changed after the function loadFeed be called', function (done) {
+        it('content should be changed after the function loadFeed be called', function () {
             expect(firstContent).not.toEqual(secondContent);
-            done();
         });
     });
 

@@ -18,7 +18,7 @@ $(function() {
 
 
         /** 
-         * 遍历 allFeeds 对象里面的所有的源来保证有链接字段而且链接不是空的。
+         * 遍历 allFeeds 对象里面的所有的源来保证有链接字段而且链接不是空 长度大于0。
          */
         it('should have url field and not null', function() {
             allFeeds.forEach(feed => {
@@ -30,7 +30,7 @@ $(function() {
 
 
         /** 
-         * 遍历 allFeeds 对象里面的所有的源来保证有名字字段而且不是空的。
+         * 遍历 allFeeds 对象里面的所有的源来保证有名字字段而且不是空 长度大于0。
          */
         it('should have name field and not null', function() {
             allFeeds.forEach(feed => {
@@ -100,7 +100,7 @@ $(function() {
          * 里面至少有一个 .entry 的元素。
          */
         it('method loadFeed() should been called and work correct', function () {
-            expect(loadFeedFun).toHaveBeenCalled();//直接用loadFeed会报错，说需要spy，但是找到function
+            expect(loadFeedFun).toHaveBeenCalled();//直接用loadFeed会报错，说需要spy，但是找到function 所以创建个loadFeedFun来监听函数调用
 
             let entryCount = $('.feed').children().length;
             expect(entryCount).toBeGreaterThan(0);

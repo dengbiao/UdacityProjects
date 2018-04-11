@@ -1,0 +1,13 @@
+@charset "utf-8";
+#restaurants-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#restaurants-list li {
+    width: calc((100% - 10px)/2);
+}
+
+#restaurants-list li:nth-child(odd) {
+    margin-right: 10px;
+}

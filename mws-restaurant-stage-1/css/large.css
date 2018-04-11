@@ -1,0 +1,27 @@
+@charset "utf-8";
+body {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#restaurants-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#restaurants-list li {
+    width: calc((100% - 20px)/3);
+}
+
+#restaurants-list li:not(:nth-child(3n)) {
+    margin-right: 10px;
+}
+
+
+#restaurant-container {
+    margin-right: 10px;
+}
+
+#restaurant-container, #reviews-container {
+    width: calc((100% - 80px)/2);
+}

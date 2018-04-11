@@ -141,6 +141,7 @@ createRestaurantHTML = (restaurant) => {
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.alt = restaurant.name;
   li.append(image);
 
   const name = document.createElement('h1');
@@ -152,6 +153,7 @@ createRestaurantHTML = (restaurant) => {
   li.append(neighborhood);
 
   const address = document.createElement('p');
+  address.classList.add('restaurant-address');
   address.innerHTML = restaurant.address;
   li.append(address);
 
@@ -174,5 +176,21 @@ addMarkersToMap = (restaurants = self.restaurants) => {
       window.location.href = marker.url
     });
     self.markers.push(marker);
+  });
+}
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/sw.js', {scope: '/'})
+          .then(function (registration) {
+
+              // 注册成功
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          })
+          .catch(function (err) {
+
+              // 注册失败:(
+              console.log('ServiceWorker registration failed: ', err);
+          });
   });
 }

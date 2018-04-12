@@ -17,11 +17,6 @@ body {
     margin-right: 10px;
 }
 
-
-#restaurant-container {
-    margin-right: 10px;
-}
-
 #restaurant-container, #reviews-container {
-    width: calc((100% - 80px)/2);
+    width: calc((100% - 60px)/2);
 }

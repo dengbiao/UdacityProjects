@@ -54,6 +54,50 @@ section {
   text-align: center;
   text-transform: uppercase;
 }
+/* 确保所有列左浮动 */
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+/* 定义每个列组合的宽度（使用的百分比） */
+.col-12 {
+  width: 100%;
+}
+.col-11 {
+  width: 91.66666667%;
+}
+.col-10 {
+  width: 83.33333333%;
+}
+.col-9 {
+  width: 75%;
+}
+.col-8 {
+  width: 66.66666667%;
+}
+.col-7 {
+  width: 58.33333333%;
+}
+.col-6 {
+  width: 50%;
+}
+.col-5 {
+  width: 41.66666667%;
+}
+.col-4 {
+  width: 33.33333333%;
+}
+.col-3 {
+  width: 25%;
+}
+.col-2 {
+  width: 16.66666667%;
+}
+.col-1 {
+  width: 8.33333333%;
+}
+
 /* ====================== Navigation ====================== */
 nav {
   width: 100%;
@@ -107,12 +151,10 @@ nav h1 a {
 /* ====================== Map ====================== */
 #map {
   height: 400px;
-  width: 100%;
   background-color: #ccc;
 }
 /* ====================== Restaurant Filtering ====================== */
 .filter-options {
-  width: 100%;
   background-color: #3397DB;
   align-items: center;
   padding: 15px 0px;
@@ -125,7 +167,6 @@ nav h1 a {
   font-weight: normal;
   line-height: 1;
   margin: 0 10px;
-  width: 100%;
 }
 .filter-options select {
   background-color: white;
@@ -151,7 +192,6 @@ nav h1 a {
   background-color: #fff;
   font-family: Arial,sans-serif;
   text-align: left;
-  width: 100%;
   margin-bottom: 20px;
   border-radius: 5px;
   display: flex;
@@ -162,7 +202,6 @@ nav h1 a {
   background-color: #ccc;
   display: block;
   margin: 0;
-  width: 100%;
   border-radius: 5px 5px 0 0;
 }
 #restaurants-list li h1 {
@@ -202,18 +241,15 @@ nav h1 a {
 
 /* ====================== Restaurant Details ====================== */
 .inside header {
-  width: 100%;
   z-index: 1000;
 }
 .inside #map-container {
   background: blue none repeat scroll 0 0;
   height: 400px;
-  width: 100%;
 }
 .inside #map {
   background-color: #ccc;
   height: 100%;
-  width: 100%;
 }
 .inside #footer {
   bottom: 0;
@@ -230,7 +266,6 @@ nav h1 a {
 }
 #restaurant-img {
   display: block;
-	width: 100%;
 }
 #restaurant-address {
   font-size: 12pt;
@@ -251,7 +286,6 @@ nav h1 a {
   border-bottom: 1px solid #d9d9d9;
   border-top: 1px solid #fff;
   padding: 15px;
-  width: 100%;
 }
 
 #reviews-container h2 {

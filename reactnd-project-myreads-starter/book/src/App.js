@@ -105,6 +105,22 @@ class BooksApp extends React.Component {
       this.setState({searchResults: []})
     }
   }
+
+  getShelfName(shelfKey) {
+    let name = '';
+    switch(shelfKey) {
+      case BOOK_SHELF_READING:
+        name = 'Currently Reading';
+        break;
+      case BOOK_SHELF_WANT:
+        name = 'Want to Read';
+        break;
+      case BOOK_SHELF_READED:
+        name = "Read";
+        break;
+    }
+    return name;
+  }
   /** 
    * 重置搜索的数据  当返回首页的时候 调用
   */
@@ -122,9 +138,9 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <BookShelf title={BOOK_SHELF_READING} bookList={this.state.booksReading} updateBook={this.updateBook}/>
-                <BookShelf title={BOOK_SHELF_WANT} bookList={this.state.booksWantToRead} updateBook={this.updateBook}/>
-                <BookShelf title={BOOK_SHELF_READED} bookList={this.state.booksReaded} updateBook={this.updateBook}/>
+                <BookShelf title={this.getShelfName(BOOK_SHELF_READING)} bookList={this.state.booksReading} updateBook={this.updateBook}/>
+                <BookShelf title={this.getShelfName(BOOK_SHELF_WANT)} bookList={this.state.booksWantToRead} updateBook={this.updateBook}/>
+                <BookShelf title={this.getShelfName(BOOK_SHELF_READED)} bookList={this.state.booksReaded} updateBook={this.updateBook}/>
               </div>
             </div>
             <div className="open-search">

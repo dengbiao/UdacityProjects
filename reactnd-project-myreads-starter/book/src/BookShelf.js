@@ -1,6 +1,11 @@
 import React from 'react'
 import * as App from './App'
+import Book from './Book'
 
+/**
+ * 书架组件 包含书架名称和书架中的书籍  可以考虑把li中的内容抽成书籍组件
+ * 当书架没有书籍的时候显示“没有书籍” 如果书架没有名字的话 那也不显示这个提示语了（搜索的时候就不需要）
+ */
 class BookShelf extends React.Component {
 
     render () {
@@ -10,31 +15,18 @@ class BookShelf extends React.Component {
                 <h2 className="bookshelf-title">{ this.props.title }</h2>
                 )}
                 <div className="bookshelf-books">
+                {this.props.bookList && this.props.bookList.length > 0 && (
                 <ol className="books-grid">
-                    {console.log(this.props.bookList)}
                     {this.props.bookList.map( book => (
                     <li key={book.id}>
-                        <div className="book">
-                            <div className="book-top">
-                                <div className="book-cover" 
-                                style={{ width: 128, height: 192, 
-                                backgroundImage: `url(${book.imageLinks ? book.imageLinks.smallThumbnail : ''})` }}></div>
-                                <div className="book-shelf-changer">
-                                    <select defaultValue={book.shelf} onChange={(event)=> this.props.updateBook(book, event.target.value)}>
-                                        <option value="none" disabled>Move to...</option>
-                                        <option value="currentlyReading" >Currently Reading</option>
-                                        <option value="wantToRead">Want to Read</option>
-                                        <option value="read">Read</option>
-                                        <option value="none">None</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div className="book-title">{book.title}</div>
-                            <div className="book-authors">{book.authors ? book.authors.join(', ') : ''}</div>
-                        </div>
+                        <Book book={book} updateBook={this.props.updateBook}/>
                     </li>
                     ))}
-                </ol>
+                </ol>)}
+
+                {this.props.title && (!this.props.bookList || this.props.bookList.length === 0)&& (
+                    <div>No books in this shelf.</div>
+                )}
                 </div>
             </div>
         )

@@ -56,7 +56,7 @@ section {
 }
 /* 确保所有列左浮动 */
 .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
-  display: inline-flex;
+  /* display: inline-flex; */
   flex-wrap: wrap;
 }
 
@@ -118,11 +118,15 @@ nav h1 a {
   text-transform: uppercase;
 }
 #breadcrumb {
-  padding: 10px 15px 16px;
+  padding: 10px 0 16px 0;
   list-style: none;
   background-color: #eee;
   font-size: 17px;
   margin: auto;
+}
+
+#breadcrumb li:first-child{
+  margin-left: 15px;
 }
 
 /* Display list items side by side */
@@ -204,7 +208,7 @@ nav h1 a {
   margin: 0;
   border-radius: 5px 5px 0 0;
 }
-#restaurants-list li h1 {
+#restaurants-list li h2 {
   color: #f18200;
   font-family: Arial,sans-serif;
   font-size: 14pt;
@@ -215,6 +219,8 @@ nav h1 a {
   padding: 0 10px;
   text-transform: uppercase;
 }
+
+
 #restaurants-list p {
   margin: 0;
   padding: 0 10px;
@@ -266,6 +272,7 @@ nav h1 a {
 }
 #restaurant-img {
   display: block;
+  width: 100%;
 }
 #restaurant-address {
   font-size: 12pt;
@@ -317,7 +324,6 @@ nav h1 a {
   justify-content: space-between;
   background-color: #252831;
   border-top-left-radius: 20px;
-  padding: 0px 15px;
 }
 
 .review-content {    
@@ -328,10 +334,12 @@ nav h1 a {
 .review-name {
   color: white;
   font-size: 12pt;
+  margin-left: 15px;
 }
 
 .review-data {
   color: white;
+  margin-right: 15px;
 }
 .review-rating {
   color: white;

@@ -56,7 +56,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   address.innerHTML = restaurant.address;
 
   const image = document.getElementById('restaurant-img');
-  image.className = 'restaurant-img'
+  image.className = 'restaurant-img col-12'
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
   image.alt = restaurant.name;
 
@@ -81,10 +81,12 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
 
     const day = document.createElement('td');
     day.innerHTML = key;
+    day.tabIndex = 1;
     row.appendChild(day);
 
     const time = document.createElement('td');
     time.innerHTML = operatingHours[key];
+    time.tabIndex = 2;
     row.appendChild(time);
 
     hours.appendChild(row);
@@ -120,6 +122,7 @@ createReviewHTML = (review) => {
   const li = document.createElement('li');
   const header = document.createElement('div');
   header.classList.add('review-info-header');
+  header.classList.add('col-12');
 
   const name = document.createElement('p');
   name.classList.add('review-name');
